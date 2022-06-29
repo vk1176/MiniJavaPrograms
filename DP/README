@@ -1,0 +1,36 @@
+PEG PROBLEM SOLVER
+
+	This command line program solves the peg problem for any number of pegs. via an implementation of the Davis Putnam algorithm. 
+
+HOW TO USE
+
+	For this program, 3 text files will be needed in total along with the 3 .java files. They must have the EXACT names as specified. They were included with submission for easy access, but of course any files can be used provided that they have the desired name and are in the same root directory as the java files. 
+
+	1. Place the input for the layout of the pegs into a file called "input.txt". The sample input provided works as a solvable case. 
+	 - The first line of the input file must have only 2 numbers, separated by a space: the first number is the number of total pegs, the second is the initial empty hole.
+	 - The next lines must consist of a list of all legal jumps possible for all states of the board. That is, a list of all possible jumps possible in the configuration of the board provided, assuming the pegs would allow for it. For example, in a 6 peg situation:
+
+	 	1 2 3
+	 	 4 5
+	 	  6
+
+	 The possible jump list would be:
+	 	1 2 3
+	 	1 4 6
+	 	3 5 6
+
+	 Reverse jumps are accounted for in the program, so one need not input both 1 2 3 and 3 2 1. 
+
+	2. Compile and run the Front.java file. 
+		 - This will read the input provided by you and translate it into propositional and then conjunctive normal form, dumping the results into a second text file called "DPinput.txt". 
+		  - I believe this file will be generated if it is not present, but those with extreme anxiety (me) will want to create blank text file with these names just to be safe. 
+
+	3. Compile and run the DP.java file
+		 - This will use the Davis Putnam algorithm to solve the problem, reading the clauses from "DPinput.txt", and placing the output into a third file (which again, may be generated if not present but for security can be created with blank contents) called "DPoutput.txt". 
+		  - Note that for particularly large versions of the puzzle, especially ones with no solution, the program can take upwards of 6 minutes and 11 seconds to complete. 
+
+	4. Compile and run the Back.java file
+		 - This will read the values of "DPoutput.txt" and create the path used to solve the problem, the series of jumps that will leave only 1 peg remaining. The path actions are printed to STANDARD OUT. 
+		  - Currently, the program is set to print the result path in a simple form [Jump(7,4,2,1); Jump(1,2,4,2), etc, where the 4th number in the list is the number of the move in sequence, starting from 1] but a more verbose form [i.e., "1: Jump the peg in Hole 7 into Hole 2, removing the peg in Hole 4, 2: Jump the peg in Hole 1 into Hole 4, removing the peg in Hole 2, etc] can be implemented simply by commenting out line 82 in Back.java and uncommenting out lines 83 to 85 
+
+

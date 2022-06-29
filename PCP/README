@@ -1,0 +1,53 @@
+Simple command line program designed to solve the post correspondance problem for a set of dominoes. The post correspondance problem can be looked up, but in summary, a set of structures with 2 strings (referred to as numerators and denominators here) on each are provided, and the goal is to arrange the dominoes such that, when combined from left to right, the numerators and denominators are identical. Dominoes can be repeated. 
+
+An an example, say we have the set: [aa/aab, bb/ba, abb/b]. The solution would be 1, 2, 1, 3, as when aligned as such, the dominoes read aabbaaabb/aabbaaabb.
+
+The inputs are maximum queue size for BFS, the overall number of maximum states that is allowed, a print flag to determine whether or not the sequence of states encountered on the search is printed, and the set of dominoes. These inputs are read from a text file, input.txt, which must remain in the same directory as the PA1 file. 
+
+The input format is as follows, and must be followed:
+
+	Max Queue Size
+	Max Number of States
+	Print (yes or no)
+	Dominoes
+
+All inputs must be provided in the specified format.
+
+The format for the Dominoes line is:
+
+	Number TopString Bottom String 
+
+There can be any number of dominoes, provided they follow the same format. If either the top or bottom of the domino is desired to be blank, one must enter the "/" character in place of the Top or Bottom String. 
+
+Sample Input: 
+
+	5
+	50
+	yes
+	1 c cca
+	2 ac ba
+	3 bb b
+	4 ac cb
+
+This will initiate a search using a max BFS queue size of 5, a maximum state number of 50, while printing every state encountered en route to the search termination, using the domino set where:
+
+	D1 = c/cca
+	D2 = ac/ba
+	D3 = bb/b
+	D4 = ac/cb
+
+Sample Input 2: 
+
+	2
+	5
+	no
+	1 b /
+	2 / a
+
+This will initiate a search with a max BFS queue size of 2, a max state number of 5, with no printing of the encountered states (so only the result of the search will be printed), using the domino set where:
+
+	D1 = b/ 
+	D2 = /a
+
+Note that using null dominoes is not recommended, as while there is clearly no solution for the above set, technically speaking "b/" and thus "bb/", "bbb/", and so on, all fall in the definition of a state that we use, thus the search result will be misleading. 
+	
